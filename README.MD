@@ -1,5 +1,3 @@
-bACKEND Project - Uses Nodejs to communicate with aws resources and serverless is used for updating code
-
 Productlist - GET - https://3kbpcb5wn7.execute-api.us-east-1.amazonaws.com/dev/products
 productById - GET - https://3kbpcb5wn7.execute-api.us-east-1.amazonaws.com/dev/products/{productId}
 
