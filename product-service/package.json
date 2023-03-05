@@ -26,7 +26,8 @@
     "@middy/http-json-body-parser": "^3.4.0",
     "aws-sdk": "^2.1325.0",
     "loadash": "^1.0.0",
-    "prettier": "^2.8.4"
+    "prettier": "^2.8.4",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@serverless/typescript": "^3.0.0",
