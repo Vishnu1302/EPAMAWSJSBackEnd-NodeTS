@@ -10,6 +10,7 @@ const getProducts = async (): Promise<any> => {
     return dbClient
         .send(command)
         .then((data) => {
+            console.log("products data fetched from products table")
             const items = data.Items?.map((item) => unmarshall(item))
             return items;
         })
@@ -24,6 +25,7 @@ const getStocks = async (): Promise<any> => {
     return dbClient
         .send(command)
         .then((data) => {
+            console.log("stocks data fetched from stocks table successfully")
             const items = data.Items?.map((item) => unmarshall(item))
             return items;
         })
@@ -37,6 +39,7 @@ const getProductsListTS = async (): Promise<APIGatewayProxyResultV2> => {
         const prods = await getProducts();
         const stocks = await getStocks();
         if (prods && stocks) {
+            console.log("Products fetched");
             var mergedList = mergeArrayObjects(prods, stocks)
             return {
                 statusCode: 200,

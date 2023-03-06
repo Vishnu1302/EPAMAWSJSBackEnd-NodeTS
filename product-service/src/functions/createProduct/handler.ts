@@ -45,7 +45,7 @@ const createProductTS = async (event): Promise<APIGatewayProxyResultV2> => {
             })
             .catch((error) => {
                 return {
-                    statusCode: 400,
+                    statusCode: 500,
                     body: JSON.stringify({message:'Unable to create product', error: error}),
                 }
             });
