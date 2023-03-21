@@ -16,8 +16,8 @@ const catalogBatchProcess: SQSHandler = async (event: SQSEvent) => {
 
             const dbClient = new DynamoDBClient({ region: 'us-east-1' });
             
-            const pItem = marshall({ id: productId, title: body.title || {}, description: body.description || {}, price: parseInt(body.price) || {} });
-            const sItem = marshall({ product_id: productId, count: parseInt(body.count) || {} });
+            const pItem = marshall({ id: productId, title: body.title, description: body.description, price: parseInt(body.price) });
+            const sItem = marshall({ product_id: productId, count: parseInt(body.count) });
 
             const trCommand: TransactWriteItemsCommandInput = {
                 TransactItems: [
@@ -38,11 +38,11 @@ const catalogBatchProcess: SQSHandler = async (event: SQSEvent) => {
 
             await dbClient.send(new TransactWriteItemsCommand(trCommand)).then(async(data) => {
                 const message = {
-                    productId: unmarshall(pItem).id,
-                    title: unmarshall(pItem).title,
-                    description: unmarshall(pItem).description,
-                    price: unmarshall(pItem).price,
-                    count: unmarshall(pItem).count
+                    productId: body.id,
+                    title: body.title,
+                    description: body.description,
+                    price: body.price,
+                    count: body.count
 
                 }
                 await sendMessageToSNS(message);
