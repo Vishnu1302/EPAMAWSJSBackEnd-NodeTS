@@ -18,7 +18,8 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
-      BUCKET_NAME: 'task5-bucket'
+      BUCKET_NAME: 'task5-bucket',
+      QUEUE_NAME: 'catalogItemsQueue'
     },
     iam: {
       role: {
@@ -29,7 +30,14 @@ const serverlessConfiguration: AWS = {
             `arn:aws:s3:::${process.env.BUCKET_NAME}`,
             `arn:aws:s3:::${process.env.BUCKET_NAME}/*`,
           ],
-        }]
+        },
+        {
+            Effect: 'Allow',
+            Action: 'sqs:*',
+            Resource: {
+              'Fn::Sub': 'arn:aws:sqs:${self:provider.region}:${AWS::AccountId}:${self:provider.environment.QUEUE_NAME}'
+            }
+          }]
       }
     }
   },
