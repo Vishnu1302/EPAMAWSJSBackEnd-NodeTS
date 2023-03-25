@@ -14,6 +14,11 @@ export default {
                     name: true
                 }
             }
+        },
+        authorizer: {
+          arn: '${self:provider.environment.AUTH_FUNC_NAME}',
+          type: 'token',
+
         }
       },
     },
