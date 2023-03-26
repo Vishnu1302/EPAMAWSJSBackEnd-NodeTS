@@ -1,6 +1,6 @@
 import { APIGatewayTokenAuthorizerEvent, APIGatewayAuthorizerResult } from 'aws-lambda';
   
-  export const basicAuthorizer = async (
+ const basicAuthorizer = async (
     event: APIGatewayTokenAuthorizerEvent
 ): Promise<APIGatewayAuthorizerResult> => {
     try {
@@ -38,3 +38,5 @@ import { APIGatewayTokenAuthorizerEvent, APIGatewayAuthorizerResult } from 'aws-
         console.log(error)
     }
   };
+
+  export default basicAuthorizer;
