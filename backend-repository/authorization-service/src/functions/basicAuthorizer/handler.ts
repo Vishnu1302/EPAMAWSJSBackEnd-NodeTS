@@ -38,5 +38,3 @@ import { APIGatewayTokenAuthorizerEvent, APIGatewayAuthorizerResult } from 'aws-
         console.log(error)
     }
   };
-  
-  export const main = basicAuthorizer;
